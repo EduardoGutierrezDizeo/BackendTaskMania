@@ -13,10 +13,14 @@ public class CorsConfig {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**") // permite todas las rutas
-                        .allowedOrigins("http://localhost:4200") // permite el front Angular
-                        .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // métodos HTTP permitidos
-                        .allowedHeaders("*") // cabeceras permitidas
+                registry.addMapping("/**") // permite todas las rutas del backend
+                        .allowedOrigins(
+                                "http://localhost:4200",                // desarrollo local
+                                "https://taskmania-16283.web.app",     // dominio principal en Firebase
+                                "https://taskmania-16283.firebaseapp.com" // dominio alterno de Firebase
+                        )
+                        .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+                        .allowedHeaders("*")
                         .allowCredentials(true);
             }
         };
